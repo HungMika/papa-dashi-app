@@ -1,7 +1,7 @@
 // Trả về file Excel chứa danh sách hóa đơn cuối ngày
 import { NextResponse } from 'next/server';
 import ExcelJS from 'exceljs';
-import { Bill } from '@/data/data-types';
+import { Bill } from '@/data/types';
 import fs from 'fs';
 import path from 'path';
 

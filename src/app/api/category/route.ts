@@ -2,7 +2,7 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
-import { Category } from '@/data/data-types';
+import { Category } from '@/data/types';
 
 const filePath = path.resolve(process.cwd(), 'src/data/categories.json');
 

@@ -1,20 +1,20 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
-import { User } from '@/data/data-types';
+import { User } from '@/data/types';
 
 const filePath = path.resolve(process.cwd(), 'src/data/users.json');
 
 export async function POST(request: Request) {
-  const { name, password } = await request.json();
+  const { username, password } = await request.json();
 
-  if (!name || !password) {
+  if (!username || !password) {
     return NextResponse.json({ message: 'Name and password are required' }, { status: 400 });
   }
 
   const users = JSON.parse(fs.readFileSync(filePath, 'utf8')) as User[];
 
-  const user = users.find(u => u.name === name && u.password === password);
+  const user = users.find(u => u.username === username && u.password === password);
 
   if (!user) {
     return NextResponse.json({ message: 'Invalid name or password' }, { status: 401 });
@@ -24,8 +24,8 @@ export async function POST(request: Request) {
     message: 'Login successful',
     user: {
       id: user.id,
-      name: user.name,
-      phone: user.phone,
+      username: user.username,
+      email: user.email,
     },
   });
 }

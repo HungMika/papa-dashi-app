@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
-import { Voucher } from '@/data/data-types';
+import { Voucher } from '@/data/types';
 
 const filePath = path.resolve(process.cwd(), 'src/data/vouchers.json');
 

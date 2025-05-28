@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
-import { User } from '@/data/data-types';
+import { User } from '@/data/types';
 
 const filePath = path.resolve(process.cwd(), 'src/data/users.json');
 

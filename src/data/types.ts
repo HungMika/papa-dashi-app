@@ -27,8 +27,8 @@ export interface Voucher {
 
 export interface User {
   id: string;
-  name: string;
-  phone: string;
+  username: string;
+  email: string;
   password: string;
 }
 

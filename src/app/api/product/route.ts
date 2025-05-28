@@ -2,7 +2,7 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
-import { Product } from '@/data/data-types';
+import { Product } from '@/data/types';
 
 const filePath = path.resolve(process.cwd(), 'src/data/products.json');
 

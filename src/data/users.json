@@ -1,8 +1,14 @@
 [
   {
     "id": "u001",
-    "name": "huda",
-    "phone": 123,
+    "username": "huda",
+    "email": "huda@gmail.com",
+    "password": "12345678"
+  },
+  {
+    "id": "2e9aa37b-cc64-4c12-804d-6ee58b7ab7d0",
+    "username": "kaly",
+    "email": "kaly@gmail.com",
     "password": "12345678"
   }
 ]
