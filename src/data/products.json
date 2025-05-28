@@ -1,0 +1,26 @@
+[
+  {
+    "id": "prod001",
+    "name": "Cà Phê Sữa Đá",
+    "imagePath": "/images/caphe-suada.jpg",
+    "unit": "ly",
+    "categoryId": "coffee01",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 18000,
+        "quantity": 50
+      },
+      {
+        "size": "M",
+        "price": 22000,
+        "quantity": 30
+      },
+      {
+        "size": "L",
+        "price": 26000,
+        "quantity": 20
+      }
+    ]
+  }
+]
