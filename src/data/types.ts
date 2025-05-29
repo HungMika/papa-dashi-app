@@ -39,12 +39,18 @@ export interface BillItem {
   quantity: number;
   price: number;
   total: number;
+  paymentMethod: 'cash' | 'bank';
+  voucherApplied?: Voucher;
 }
 
 export interface Bill {
   id: string;
   userId: string;
-  date: string;
+  date: string; // YYYY-MM-DD
+  time: string; // HH:mm:ss
   items: BillItem[];
-  totalAmount: number;
+  totalBeforeDiscount: number;
+  itemDiscountTotal: number;
+  billDiscount?: Voucher;
+  finalAmount: number;
 }

@@ -6,7 +6,21 @@ import { Category } from '@/data/types';
 
 const filePath = path.resolve(process.cwd(), 'src/data/categories.json');
 
-// [PUT] category with api/category/[id]
+// [GET] category by id
+export async function GET(_: NextRequest, context: { params: { id: string } }) {
+  const id = context.params.id;
+
+  const categories = JSON.parse(fs.readFileSync(filePath, 'utf8')) as Category[];
+  const category = categories.find(c => c.id === id);
+
+  if (!category) {
+    return NextResponse.json({ message: 'Category not found' }, { status: 404 });
+  }
+
+  return NextResponse.json(category);
+}
+
+// [PUT] update category
 export async function PUT(req: NextRequest, context: { params: { id: string } }) {
   const id = context.params.id;
   const updated: Category = await req.json();
@@ -18,7 +32,7 @@ export async function PUT(req: NextRequest, context: { params: { id: string } })
   return NextResponse.json({ message: 'Category updated' });
 }
 
-// [DELETE] category with api/category/[id]
+// [DELETE] remove category
 export async function DELETE(_: NextRequest, context: { params: { id: string } }) {
   const id = context.params.id;
 

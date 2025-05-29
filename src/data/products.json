@@ -8,17 +8,17 @@
     "sizes": [
       {
         "size": "S",
-        "price": 18000,
+        "price": 15000,
         "quantity": 50
       },
       {
         "size": "M",
-        "price": 22000,
+        "price": 20000,
         "quantity": 30
       },
       {
         "size": "L",
-        "price": 26000,
+        "price": 25000,
         "quantity": 20
       }
     ]
