@@ -20,7 +20,7 @@ export function Sidebar() {
   };
 
   return (
-    <div className="h-full bg-gray-100 text-gray-900 flex flex-col p-4 border-r border-gray-300">
+    <div className="h-full bg-gray-100 text-gray-900 flex flex-col p-2 border-r border-gray-300">
       <div className="text-lg font-bold mb-8">Dashi App</div>
 
       <nav className="flex flex-col space-y-2">

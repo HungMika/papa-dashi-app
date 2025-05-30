@@ -2,7 +2,7 @@
   {
     "id": "prod001",
     "name": "Cà Phê Sữa Đá",
-    "imagePath": "/images/caphe-suada.jpg",
+    "imagePath": "C:/Users/Hung Dang/Downloads/product-img",
     "unit": "ly",
     "categoryId": "coffee01",
     "sizes": [
@@ -20,6 +20,54 @@
         "size": "L",
         "price": 25000,
         "quantity": 20
+      }
+    ]
+  },
+  {
+    "id": "prod002",
+    "name": "Trà Sữa Trân Châu",
+    "imagePath": "/images/trasua-tranchau.jpg",
+    "unit": "ly",
+    "categoryId": "milktea01",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 25000,
+        "quantity": 40
+      },
+      {
+        "size": "M",
+        "price": 30000,
+        "quantity": 25
+      },
+      {
+        "size": "L",
+        "price": 35000,
+        "quantity": 15
+      }
+    ]
+  },
+  {
+    "id": "prod003",
+    "name": "Nước Ép Cam",
+    "imagePath": "/images/nuocep-cam.jpg",
+    "unit": "ly",
+    "categoryId": "juice01",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 20000,
+        "quantity": 30
+      },
+      {
+        "size": "M",
+        "price": 25000,
+        "quantity": 20
+      },
+      {
+        "size": "L",
+        "price": 30000,
+        "quantity": 10
       }
     ]
   }
