@@ -3,19 +3,30 @@
 import { useQuery } from '@tanstack/react-query';
 import { OrderBar } from '@/components/order-bar';
 import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 import { Search } from 'lucide-react';
 import { getProducts } from '@/services/products';
+import { categoryService } from '@/services/category';
 import ProductCard from '@/components/Product';
-import { Product } from '@/data/types';
+import { Product, Category } from '@/data/types';
 
 export default function DashboardPage() {
   const {
     data: products,
-    isLoading,
-    isError,
+    isLoading: isLoadingProducts,
+    isError: isErrorProducts,
   } = useQuery<Product[], Error>({
     queryKey: ['products'],
     queryFn: () => getProducts(),
+  });
+
+  const {
+    data: categories,
+    isLoading: isLoadingCategories,
+    isError: isErrorCategories,
+  } = useQuery<Category[], Error>({
+    queryKey: ['categories'],
+    queryFn: () => categoryService.getAll(),
   });
 
   return (
@@ -32,12 +43,23 @@ export default function DashboardPage() {
           </div>
         </div>
 
+        {/* Category buttons */}
+        <div className="w-full px-4 py-2 border-b border-gray-200 overflow-x-auto">
+          <div className="flex gap-2">
+            {isLoadingCategories && <span>Loading categories...</span>}
+            {isErrorCategories && <span>Failed to load categories.</span>}
+            {categories?.map((category) => (
+              <Button key={category.id} variant="outline" className="shrink-0">
+                {category.name}
+              </Button>
+            ))}
+          </div>
+        </div>
+
         {/* Main content */}
         <div className="flex-1 p-6 bg-gray-100 overflow-auto">
-          <p className="text-lg mb-6">Welcome to your dashboard!</p>
-
-          {isLoading && <div>Loading products...</div>}
-          {isError && <div>Failed to load products.</div>}
+          {isLoadingProducts && <div>Loading products...</div>}
+          {isErrorProducts && <div>Failed to load products.</div>}
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {products?.map((product) => (
