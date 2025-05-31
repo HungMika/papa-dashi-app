@@ -1,0 +1,60 @@
+[
+  {
+    "id": "c6961e83-db4e-4314-bbe7-aa3a0c9b2e6c",
+    "userId": "u001",
+    "date": "2025-05-31",
+    "time": "20:15:00",
+    "items": [
+      {
+        "productId": "prod003",
+        "name": "Nước Ép Cam",
+        "customerName": "",
+        "quantity": 1,
+        "price": 20000,
+        "total": 20000,
+        "paymentMethod": "cash"
+      }
+    ],
+    "totalBeforeDiscount": 20000,
+    "itemDiscountTotal": 0,
+    "finalAmount": 20000
+  },
+  {
+    "id": "0059b802-e1d0-4b2f-9584-8735772661e2",
+    "userId": "u001",
+    "date": "2025-05-31",
+    "time": "20:15:30",
+    "items": [
+      {
+        "productId": "prod003",
+        "name": "Nước Ép Cam",
+        "customerName": "Khánh Ly",
+        "quantity": 1,
+        "price": 20000,
+        "total": 20000,
+        "paymentMethod": "bank"
+      },
+      {
+        "productId": "prod002",
+        "name": "Trà Sữa Trân Châu",
+        "customerName": "Khánh Ly",
+        "quantity": 1,
+        "price": 25000,
+        "total": 25000,
+        "paymentMethod": "bank"
+      },
+      {
+        "productId": "prod001",
+        "name": "Cà Phê Sữa Đá",
+        "customerName": "Khánh Ly",
+        "quantity": 1,
+        "price": 15000,
+        "total": 15000,
+        "paymentMethod": "bank"
+      }
+    ],
+    "totalBeforeDiscount": 60000,
+    "itemDiscountTotal": 0,
+    "finalAmount": 60000
+  }
+]

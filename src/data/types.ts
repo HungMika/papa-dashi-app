@@ -51,6 +51,7 @@ export interface Bill {
   items: BillItem[];
   totalBeforeDiscount: number;
   itemDiscountTotal: number;
-  billDiscount?: Voucher;
+  billDiscountAmount: number;   
+  voucherApplied?: Voucher;
   finalAmount: number;
 }

@@ -13,6 +13,15 @@ export async function GET() {
 export async function POST(request: Request) {
   const newVoucher: Voucher = await request.json();
   const vouchers = JSON.parse(fs.readFileSync(filePath, 'utf8')) as Voucher[];
+
+  const exists = vouchers.find(v => v.id === newVoucher.id);
+  if (exists) {
+    return NextResponse.json(
+      { message: 'Voucher with this ID already exists' },
+      { status: 400 }
+    );
+  }
+
   vouchers.push(newVoucher);
   fs.writeFileSync(filePath, JSON.stringify(vouchers, null, 2));
   return NextResponse.json({ message: 'Voucher added' });

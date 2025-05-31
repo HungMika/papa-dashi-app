@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { useOrder } from '@/context/OrderContext';
 
 interface ProductCardProps {
   product: Product;
@@ -12,12 +13,22 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   const [selectedSize, setSelectedSize] = useState<string>(product.sizes[0]?.size || '');
   const [quantity, setQuantity] = useState<number>(1);
+  const { addItem } = useOrder();
 
   const selectedOption = product.sizes.find((s) => s.size === selectedSize);
   const price = selectedOption ? selectedOption.price : 0;
 
   const handleOrder = () => {
-    alert(`Ordered ${quantity} x ${product.name} (${selectedSize})`);
+    if (selectedOption) {
+      addItem({
+        productId: product.id,
+        name: product.name,
+        size: selectedOption,
+        quantity,
+      });
+
+      setQuantity(1); // reset về 1 sau khi order xong
+    }
   };
 
   return (
