@@ -46,7 +46,7 @@ export function Sidebar() {
               key={item.href}
               onClick={() => handleNav(item.href)}
               className={cn(
-                'flex items-center gap-2 px-3 py-2 rounded hover:bg-green-200 hover:text-black transition text-left w-full',
+                'flex items-center gap-2 px-3 py-2 rounded hover:bg-green-200 hover:text-black transition text-left w-full cursor-pointer',
                 isActive ? 'bg-green-600 font-medium text-white' : '',
               )}
             >
@@ -60,7 +60,7 @@ export function Sidebar() {
       <div className="pt-4 border-t border-gray-300">
         <button
           onClick={handleLogout}
-          className="flex items-center gap-2 px-3 py-2 rounded hover:bg-red-200 hover:text-black transition text-left w-full text-red-600"
+          className="flex items-center gap-2 px-3 py-2 rounded hover:bg-red-200 hover:text-black transition text-left w-full text-red-600 cursor-pointer"
         >
           <LogOut size={20} />
           <span>Đăng xuất</span>

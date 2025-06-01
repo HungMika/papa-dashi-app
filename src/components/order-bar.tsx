@@ -142,7 +142,7 @@ export function OrderBar() {
           </div>
         </RadioGroup>
 
-        <Button className="w-full" onClick={handleCheckout}>
+        <Button className="w-full cursor-pointer" onClick={handleCheckout}>
           Thanh toán
         </Button>
       </div>

@@ -28,14 +28,14 @@ export function OrderProvider({ children }: { children: ReactNode }) {
 
   const addItem = (item: OrderItem) => {
     setOrderItems((prev) => {
-      const existingIndex = prev.findIndex((i) => i.productId === item.productId && i.size.size === item.size.size);
+      const exists = prev.some((i) => i.productId === item.productId && i.size.size === item.size.size);
 
-      if (existingIndex !== -1) {
-        const updated = [...prev];
-        updated[existingIndex].quantity += item.quantity; // cộng thêm số lượng input
-        return updated;
+      if (exists) {
+        // Đã tồn tại, KHÔNG thêm gì cả
+        return prev;
       } else {
-        return [...prev, { ...item }]; // thêm mới giữ nguyên quantity từ input
+        // Chưa có → thêm mới
+        return [...prev, { ...item }];
       }
     });
   };

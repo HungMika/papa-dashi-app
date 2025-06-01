@@ -47,7 +47,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           <RadioGroup value={selectedSize} onValueChange={setSelectedSize} className="flex flex-wrap gap-2">
             {product.sizes.map((option) => (
               <div key={option.size} className="flex items-center space-x-1">
-                <RadioGroupItem value={option.size} id={option.size} />
+                <RadioGroupItem value={option.size} id={option.size} className="cursor-pointer" />
                 <label htmlFor={option.size} className="text-[12px]">
                   {option.size}
                 </label>
@@ -61,7 +61,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           <Button
             variant="outline"
             size="sm"
-            className="h-6 w-6 p-0"
+            className="h-6 w-6 p-0 cursor-pointer"
             onClick={() => setQuantity((q) => Math.max(1, q - 1))}
           >
             -
@@ -72,13 +72,18 @@ export default function ProductCard({ product }: ProductCardProps) {
             onChange={(e) => setQuantity(Math.max(1, Number(e.target.value)))}
             className="w-10 h-6 text-center text-[12px] p-0"
           />
-          <Button variant="outline" size="sm" className="h-6 w-6 p-0" onClick={() => setQuantity((q) => q + 1)}>
+          <Button
+            variant="outline"
+            size="sm"
+            className="h-6 w-6 p-0 cursor-pointer"
+            onClick={() => setQuantity((q) => q + 1)}
+          >
             +
           </Button>
         </div>
 
         <div className="text-sm font-semibold">{price} VND</div>
-        <Button size="sm" onClick={handleOrder}>
+        <Button size="sm" className="cursor-pointer" onClick={handleOrder}>
           Order
         </Button>
       </CardContent>

@@ -75,5 +75,29 @@
         "quantity": 10
       }
     ]
+  },
+  {
+    "id": "prod004",
+    "name": "Nước Ép Táo",
+    "imagePath": "product-img/nuoc-ep-cam.jpg",
+    "unit": "ly",
+    "categoryId": "juice01",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 20000,
+        "quantity": 30
+      },
+      {
+        "size": "M",
+        "price": 25000,
+        "quantity": 20
+      },
+      {
+        "size": "L",
+        "price": 30000,
+        "quantity": 10
+      }
+    ]
   }
 ]
