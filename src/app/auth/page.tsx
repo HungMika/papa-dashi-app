@@ -4,18 +4,15 @@ import { useAuthRedirect } from '@/hooks/auth-require';
 import { AuthScreen } from '@/components/auth/auth-screen';
 
 const AuthPage = () => {
-  const { user, hasHydrated } = useAuthRedirect({
+  const { user, hasChecked } = useAuthRedirect({
     redirectIfFound: true,
     redirectTo: '/dashboard',
   });
 
-  if (!hasHydrated) {
+  if (!hasChecked) {
     return null;
   }
 
-  if (user) {
-    return null;
-  }
   return <AuthScreen />;
 };
 export default AuthPage;

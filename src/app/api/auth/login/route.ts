@@ -14,18 +14,38 @@ export async function POST(request: Request) {
 
   const users = JSON.parse(fs.readFileSync(filePath, 'utf8')) as User[];
 
-  const user = users.find(u => u.username === username && u.password === password);
+  const user = users.find(u =>
+  u.username.toLowerCase() === username.toLowerCase() &&
+  u.password === password
+);
 
   if (!user) {
-    return NextResponse.json({ message: 'Invalid name or password' }, { status: 401 });
-  }
+  return NextResponse.json({ message: 'Invalid name or password' }, { status: 401 });
+}
 
-  return NextResponse.json({
-    message: 'Login successful',
-    user: {
-      id: user.id,
-      username: user.username,
-      email: user.email,
-    },
-  });
+// Ghi session
+const sessionFilePath = path.resolve(process.cwd(), 'src/data/login-session.json');
+fs.writeFileSync(sessionFilePath, JSON.stringify({
+  id: user.id,
+  username: user.username,
+  email: user.email,
+}));
+
+console.log('🔵 Received username:', username);
+console.log('🔵 Received password:', password);
+console.log('🟡 Available users:', users.map(u => ({
+  username: u.username,
+  password: u.password,
+})));
+
+
+return NextResponse.json({
+  message: 'Login successful',
+  user: {
+    id: user.id,
+    username: user.username,
+    email: user.email,
+  },
+});
+
 }

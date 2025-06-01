@@ -43,12 +43,10 @@ export const SignInCard = ({ setstate }: SignInCardProps) => {
     try {
       const user = await logIn(username, password);
       toast.success('Logged in successfully.');
-
       setUser(user);
       router.push('/dashboard');
     } catch (err: any) {
       const backendMessage = err?.response?.data?.message || 'Login failed. Please try again.';
-
       setError(backendMessage);
     } finally {
       setPending(false);

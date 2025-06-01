@@ -1,7 +1,14 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
+const ElectronStore = require('electron-store').default;  // Sửa chỗ này
+const store = new ElectronStore();
+
+console.log('Electron Store path:', store.path);
+
 
 function createWindow() {
+  console.log('App name:', app.getName());
+
   const win = new BrowserWindow({
     width: 1200,
     height: 800,
@@ -12,10 +19,10 @@ function createWindow() {
     },
   });
 
-  // Nếu chạy dev
+  // Dev
   win.loadURL('http://localhost:3000');
 
-  // Nếu chạy production (build Next.js xong)
+  // Production
   // win.loadFile('out/index.html');
 }
 

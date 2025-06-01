@@ -10,5 +10,11 @@
     "username": "Khanh Ly",
     "email": "kaly@gmail.com",
     "password": "12345678"
+  },
+  {
+    "id": "544f6c8c-0086-49cc-a7fa-4a8e1c55f3a3",
+    "username": "admin",
+    "email": "abc123@gmail.com",
+    "password": "12345678"
   }
 ]
