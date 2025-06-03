@@ -5,9 +5,17 @@ const api = axios.create({
   baseURL: '/api/product',
 });
 
+type ProductParams = {
+  name?: string;
+  categoryId?: string;
+}
+
 // GET all products, optionally filtered by name
-export const getProducts = async (nameQuery?: string): Promise<Product[]> => {
-  const params = nameQuery ? { name: nameQuery } : {};
+export const getProducts = async (nameQuery?: string, categoryId?: string): Promise<Product[]> => {
+ const params: Record<string, string> = {};
+  if (nameQuery) params.name = nameQuery;
+  if (categoryId) params.categoryId = categoryId;  
+  
   const response = await api.get('/', { params });
   return response.data;
 };

@@ -82,7 +82,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           </Button>
         </div>
 
-        <div className="text-sm font-semibold">{price} VND</div>
+        <div className="text-sm font-semibold">{price.toLocaleString()} VND</div>
         <Button size="sm" className="cursor-pointer" onClick={handleOrder}>
           Order
         </Button>

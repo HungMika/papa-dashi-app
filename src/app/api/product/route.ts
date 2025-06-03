@@ -8,6 +8,7 @@ const filePath = path.resolve(process.cwd(), 'src/data/products.json');
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const nameQuery = searchParams.get('name')?.toLowerCase();
+   const categoryId = searchParams.get('categoryId');
 
   const products = JSON.parse(fs.readFileSync(filePath, 'utf8')) as Product[];
 
@@ -18,6 +19,11 @@ export async function GET(request: NextRequest) {
       p.name.toLowerCase().includes(nameQuery)
     );
   }
+
+  if (categoryId) {
+    filteredProducts = filteredProducts.filter(p => p.categoryId === categoryId);
+  }
+
 
   return NextResponse.json(filteredProducts);
 }

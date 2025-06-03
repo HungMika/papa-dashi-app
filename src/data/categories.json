@@ -1,14 +1,18 @@
 [
   {
     "id": "coffee01",
-    "name": "cafe"
+    "name": "cà phê"
   },
   {
     "id": "milktea01",
     "name": "trà sữa"
   },
   {
-    "id": "juice01",
-    "name": "nước ép"
+    "id": "tea01",
+    "name": "trà"
+  },
+  {
+    "id": "chao-01",
+    "name": "cháo"
   }
 ]

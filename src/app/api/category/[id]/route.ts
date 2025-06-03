@@ -8,7 +8,7 @@ const filePath = path.resolve(process.cwd(), 'src/data/categories.json');
 
 // [GET] category by id
 export async function GET(_: NextRequest, context: { params: { id: string } }) {
-  const id = context.params.id;
+  const id = await context.params.id;
 
   const categories = JSON.parse(fs.readFileSync(filePath, 'utf8')) as Category[];
   const category = categories.find(c => c.id === id);
@@ -22,7 +22,7 @@ export async function GET(_: NextRequest, context: { params: { id: string } }) {
 
 // [PUT] update category
 export async function PUT(req: NextRequest, context: { params: { id: string } }) {
-  const id = context.params.id;
+  const id = await context.params.id;
   const updated: Category = await req.json();
 
   let categories = JSON.parse(fs.readFileSync(filePath, 'utf8')) as Category[];
@@ -34,7 +34,7 @@ export async function PUT(req: NextRequest, context: { params: { id: string } })
 
 // [DELETE] remove category
 export async function DELETE(_: NextRequest, context: { params: { id: string } }) {
-  const id = context.params.id;
+  const id = await context.params.id;
 
   let categories = JSON.parse(fs.readFileSync(filePath, 'utf8')) as Category[];
   categories = categories.filter(c => c.id !== id);

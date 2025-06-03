@@ -79,9 +79,129 @@
   {
     "id": "prod004",
     "name": "Nước Ép Táo",
-    "imagePath": "product-img/nuoc-ep-cam.jpg",
+    "imagePath": "product-img/nuoc-ep-tao.jpg",
     "unit": "ly",
     "categoryId": "juice01",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 20000,
+        "quantity": 30
+      },
+      {
+        "size": "M",
+        "price": 25000,
+        "quantity": 20
+      },
+      {
+        "size": "L",
+        "price": 30000,
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "id": "prod005",
+    "name": "Nước Ép Dứa",
+    "imagePath": "product-img/nuoc-ep-dua.jpg",
+    "unit": "ly",
+    "categoryId": "juice01",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 20000,
+        "quantity": 30
+      },
+      {
+        "size": "M",
+        "price": 25000,
+        "quantity": 20
+      },
+      {
+        "size": "L",
+        "price": 30000,
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "id": "prod006",
+    "name": "Nước Ép Dưa Hấu",
+    "imagePath": "product-img/nuoc-ep-dua-hau.jpg",
+    "unit": "ly",
+    "categoryId": "juice01",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 20000,
+        "quantity": 30
+      },
+      {
+        "size": "M",
+        "price": 25000,
+        "quantity": 20
+      },
+      {
+        "size": "L",
+        "price": 30000,
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "id": "prod007",
+    "name": "Trà Đào Cam Sả",
+    "imagePath": "product-img/tra-dao-cam-sa.jpg",
+    "unit": "ly",
+    "categoryId": "tea01",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 20000,
+        "quantity": 30
+      },
+      {
+        "size": "M",
+        "price": 25000,
+        "quantity": 20
+      },
+      {
+        "size": "L",
+        "price": 30000,
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "id": "prod008",
+    "name": "Trà sữa Matcha",
+    "imagePath": "product-img/tra-sua-matcha.jpg",
+    "unit": "ly",
+    "categoryId": "milktea01",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 20000,
+        "quantity": 30
+      },
+      {
+        "size": "M",
+        "price": 25000,
+        "quantity": 20
+      },
+      {
+        "size": "L",
+        "price": 30000,
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "id": "prod009",
+    "name": "Trà Vải",
+    "imagePath": "product-img/tra-vai.jpg",
+    "unit": "ly",
+    "categoryId": "tea01",
     "sizes": [
       {
         "size": "S",

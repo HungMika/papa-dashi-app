@@ -62,6 +62,7 @@ export function OrderBar() {
 
   return (
     <div className="flex flex-col h-full">
+      <div className="text-lg font-bold mb-4">Đơn hàng hiện tại</div>
       <input
         type="text"
         placeholder="Tên khách hàng"
@@ -70,18 +71,20 @@ export function OrderBar() {
         onChange={(e) => setCustomerName(e.target.value)}
       />
 
-      <div className="text-lg font-bold mb-4">Đơn hàng hiện tại</div>
-
-      <div className="flex-1 overflow-y-auto space-y-2">
+      <div className="flex-1 overflow-y-auto space-y-2 max-h-[380px]">
         {orderItems.map((item, index) => (
           <div key={index} className="border p-2 rounded space-y-1">
             <div className="flex justify-between">
               <span>
                 {item.name} ({item.size.size}) x{item.quantity}
               </span>
-              <button onClick={() => removeItem(item.productId, item.size.size)} className="text-red-500 text-sm">
+              <Button
+                variant={'outline'}
+                onClick={() => removeItem(item.productId, item.size.size)}
+                className="text-red-500 text-sm cursor-pointer"
+              >
                 Bỏ
-              </button>
+              </Button>
             </div>
           </div>
         ))}
@@ -90,7 +93,7 @@ export function OrderBar() {
       <div className="mt-4 border-t pt-4 space-y-2">
         <div className="flex justify-between font-semibold">
           <span>Tổng trước giảm:</span>
-          <span>{totalBeforeDiscount.toLocaleString()}₫</span>
+          <span>{totalBeforeDiscount.toLocaleString()} VND</span>
         </div>
 
         <Select
@@ -119,12 +122,12 @@ export function OrderBar() {
 
         <div className="flex justify-between font-semibold">
           <span>Giảm giá:</span>
-          <span>-{billDiscount.toLocaleString()}₫</span>
+          <span>-{billDiscount.toLocaleString()} VND</span>
         </div>
 
         <div className="flex justify-between font-semibold">
           <span>Thành tiền:</span>
-          <span>{finalAmount.toLocaleString()}₫</span>
+          <span>{finalAmount.toLocaleString()} VND</span>
         </div>
 
         <RadioGroup
