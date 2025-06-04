@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Pencil, Trash2 } from 'lucide-react';
 import ProductDialog from '@/components/product/ProductDetail';
 import { useConfirm } from '@/hooks/use-confirm';
+import EditProductDialog from './EditProductDialog';
 
 interface Props {
   product: Product;
@@ -12,6 +13,7 @@ interface Props {
 
 export default function ProductItem({ product, onDelete }: Props) {
   const [open, setOpen] = useState(false);
+  const [editOpen, setEditOpen] = useState(false);
   const [ConfirmDialog, confirm] = useConfirm('Xác nhận xoá', `Bạn có chắc muốn xoá món "${product.name}" không?`);
 
   const handleDelete = async () => {
@@ -33,8 +35,7 @@ export default function ProductItem({ product, onDelete }: Props) {
             className="cursor-pointer hover:text-blue-600 transition-transform duration-150 hover:scale-110"
             onClick={(e) => {
               e.stopPropagation();
-              // TODO: Mở Edit Dialog sau
-              console.log('Sửa món:', product.id);
+              setEditOpen(true);
             }}
           >
             <Pencil size={16} />
@@ -52,7 +53,7 @@ export default function ProductItem({ product, onDelete }: Props) {
           </Button>
         </div>
       </div>
-
+      <EditProductDialog product={product} open={editOpen} onOpenChange={setEditOpen} />
       <ProductDialog open={open} onOpenChange={setOpen} product={product} />
       <ConfirmDialog />
     </>

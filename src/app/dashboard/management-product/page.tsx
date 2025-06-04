@@ -2,6 +2,7 @@ import CategoryList from '@/components/category/CategoryList';
 import AddCategoryDialog from '@/components/category/AddCategoryDialog';
 import { Button } from '@/components/ui/button';
 import ProductList from '@/components/product/ProductList';
+import AddProductDialog from '@/components/product/AddProductDialog';
 
 export default function ManagementProductPage() {
   return (
@@ -30,7 +31,7 @@ export default function ManagementProductPage() {
             <div className="flex-1 overflow-y-auto space-y-2">
               <ProductList />
             </div>
-            <Button className="mt-2 btn">+ Thêm món</Button>
+            <AddProductDialog />
           </div>
 
           {/* Phải - Voucher List */}
