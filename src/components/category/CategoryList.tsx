@@ -4,6 +4,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { categoryService } from '@/services/category';
 import { Category } from '@/data/types';
 import CategoryItem from '@/components/category/CategoryItem';
+import toast from 'react-hot-toast';
 
 export default function CategoryList() {
   const queryClient = useQueryClient();
@@ -17,6 +18,7 @@ export default function CategoryList() {
     mutationFn: (id: string) => categoryService.remove(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['categories'] });
+      toast.success('Xoá loại hàng thành công');
     },
   });
 

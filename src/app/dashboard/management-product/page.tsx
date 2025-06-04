@@ -1,6 +1,7 @@
 import CategoryList from '@/components/category/CategoryList';
 import AddCategoryDialog from '@/components/category/AddCategoryDialog';
 import { Button } from '@/components/ui/button';
+import ProductList from '@/components/product/ProductList';
 
 export default function ManagementProductPage() {
   return (
@@ -25,8 +26,10 @@ export default function ManagementProductPage() {
 
           {/* Giữa - Product List */}
           <div className="flex-1 bg-white rounded shadow p-3 flex flex-col">
-            <h2 className="text-lg font-bold mb-2">Danh sách món ăn</h2>
-            <div className="flex-1 overflow-y-auto space-y-2">{/* Product list here */}</div>
+            <h2 className="text-lg font-bold mb-2">Danh sách món</h2>
+            <div className="flex-1 overflow-y-auto space-y-2">
+              <ProductList />
+            </div>
             <Button className="mt-2 btn">+ Thêm món</Button>
           </div>
 
