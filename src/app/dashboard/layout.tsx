@@ -1,5 +1,5 @@
 'use client';
-import { Sidebar } from '@/components/sidebar';
+import { Sidebar } from '@/components/dashboard/sidebar';
 import { useAuthRedirect } from '@/hooks/auth-require';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {

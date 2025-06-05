@@ -3,6 +3,8 @@ import AddCategoryDialog from '@/components/category/AddCategoryDialog';
 import { Button } from '@/components/ui/button';
 import ProductList from '@/components/product/ProductList';
 import AddProductDialog from '@/components/product/AddProductDialog';
+import VoucherList from '@/components/voucher/VoucherList';
+import AddVoucherDialog from '@/components/voucher/AddVoucherDialog';
 
 export default function ManagementProductPage() {
   return (
@@ -37,8 +39,10 @@ export default function ManagementProductPage() {
           {/* Phải - Voucher List */}
           <div className="w-1/5 bg-white rounded shadow p-3 flex flex-col">
             <h2 className="text-lg font-bold mb-2">Voucher</h2>
-            <div className="flex-1 overflow-y-auto space-y-2">{/* Voucher list here */}</div>
-            <Button className="mt-2 btn">+ Thêm voucher</Button>
+            <div className="flex-1 overflow-y-auto space-y-2">
+              <VoucherList />
+            </div>
+            <AddVoucherDialog />{' '}
           </div>
         </div>
       </div>

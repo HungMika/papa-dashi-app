@@ -1,13 +1,13 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { OrderBar } from '@/components/order-bar';
+import { OrderBar } from '@/components/dashboard/order-bar';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { RotateCcw, Search } from 'lucide-react';
 import { getProducts } from '@/services/products';
 import { categoryService } from '@/services/category';
-import ProductCard from '@/components/Product';
+import ProductCard from '@/components/dashboard/Product';
 import { Product, Category } from '@/data/types';
 import { OrderProvider } from '@/context/OrderContext';
 import { useState } from 'react';
