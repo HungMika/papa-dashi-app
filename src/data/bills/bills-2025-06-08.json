@@ -1,0 +1,28 @@
+[
+  {
+    "id": "59374137-3e33-4872-98fc-91f744de4c21",
+    "userId": "u001",
+    "date": "2025-06-08",
+    "time": "17:11:29",
+    "note": "thêm cá hồi",
+    "items": [
+      {
+        "productId": "chao-chsc",
+        "name": "cháo cá hồi sốt cà",
+        "quantity": 1,
+        "price": 12000,
+        "total": 12000,
+        "paymentMethod": "bank"
+      }
+    ],
+    "totalBeforeDiscount": 12000,
+    "itemDiscountTotal": 0,
+    "billDiscountAmount": 1200,
+    "voucherApplied": {
+      "id": "dashi01",
+      "name": "Dashi",
+      "discountPercent": 10
+    },
+    "finalAmount": 10800
+  }
+]

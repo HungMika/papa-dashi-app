@@ -35,7 +35,6 @@ export interface User {
 export interface BillItem {
   productId: string;
   name: string;
-  customerName: string;
   quantity: number;
   price: number;
   total: number;
@@ -49,6 +48,7 @@ export interface Bill {
   date: string; // YYYY-MM-DD
   time: string; // HH:mm:ss
   items: BillItem[];
+  note?: string;
   totalBeforeDiscount: number;
   itemDiscountTotal: number;
   billDiscountAmount: number;   

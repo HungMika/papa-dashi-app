@@ -24,43 +24,32 @@ export async function POST(request: Request) {
 
   const bills = JSON.parse(fs.readFileSync(filePath, 'utf8')) as Bill[];
 
-  let totalBeforeDiscount = 0;
-  let itemDiscountTotal = 0;
-  let totalAfterItemDiscount = 0;
+  // ✅ Tính tổng trước giảm (không có giảm giá từng món)
+  const processedItems: BillItem[] = reqBody.items.map((item: any) => ({
+    ...item,
+    total: item.price * item.quantity,
+  }));
 
-  const processedItems: BillItem[] = reqBody.items.map((item: any) => {
-    const originalTotal = item.price * item.quantity;
-    let discountedTotal = originalTotal;
+  const totalBeforeDiscount = processedItems.reduce((sum, item) => sum + item.total, 0);
 
-    if (item.voucherApplied) {
-      discountedTotal = discountedTotal * (1 - item.voucherApplied.discountPercent / 100);
-      itemDiscountTotal += originalTotal - discountedTotal;
-    }
+const appliedBillVoucher: Voucher | undefined = reqBody.voucherApplied;
 
-    totalBeforeDiscount += originalTotal;
-    totalAfterItemDiscount += discountedTotal;
+  const percent = appliedBillVoucher ? Number(appliedBillVoucher.discountPercent) : 0;
+  const billDiscountAmount = (percent / 100) * totalBeforeDiscount;
 
-    return {
-      ...item,
-      total: discountedTotal,
-    };
-  });
-
-  const appliedBillVoucher: Voucher | undefined = reqBody.billVoucher;
-
-  const finalAmount = appliedBillVoucher
-    ? totalAfterItemDiscount * (1 - appliedBillVoucher.discountPercent / 100)
-    : totalAfterItemDiscount;
+  const finalAmount = totalBeforeDiscount - billDiscountAmount;
 
   const billToSave: Bill = {
     id: uuidv4(),
     userId: reqBody.userId,
     date: dateStr,
     time: timeStr,
+    note: reqBody.note,
     items: processedItems,
     totalBeforeDiscount,
-    itemDiscountTotal,
-    billDiscount: appliedBillVoucher,
+    itemDiscountTotal: 0, // vì không giảm từng món
+    billDiscountAmount,
+    voucherApplied: appliedBillVoucher,
     finalAmount,
   };
 

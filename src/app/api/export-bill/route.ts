@@ -24,53 +24,94 @@ export async function GET(request: Request) {
   const sheet = workbook.addWorksheet('Bills');
 
   sheet.columns = [
-    { header: 'Bill ID', key: 'id', width: 20 },
-    { header: 'User ID', key: 'userId', width: 20 },
-    { header: 'Date', key: 'date', width: 12 },
-    { header: 'Time', key: 'time', width: 10 },
-    { header: 'Customer Names', key: 'customerNames', width: 30 },
-    { header: 'Before Discount', key: 'totalBeforeDiscount', width: 15 },
-    { header: 'Item Discount', key: 'itemDiscountTotal', width: 15 },
-    { header: 'Final Amount', key: 'finalAmount', width: 15 },
-  ];
+  { header: 'Bill ID', key: 'id', width: 20 },
+  { header: 'User ID', key: 'userId', width: 15 },
+  { header: 'Date', key: 'date', width: 12 },
+  { header: 'Time', key: 'time', width: 10 },
+  { header: 'Note', key: 'note', width: 30 },
+  { header: 'Ordered Items', key: 'orderedItems', width: 40 },
+  {
+    header: 'Before Discount',
+    key: 'totalBeforeDiscount',
+    width: 18,
+    style: { numFmt: '#,##0" ₫"' },
+  },
+  {
+    header: 'Item Discount',
+    key: 'itemDiscountTotal',
+    width: 15,
+    style: { numFmt: '#,##0" ₫"' },
+  },
+  {
+    header: 'Bill Discount',
+    key: 'billDiscountAmount',
+    width: 15,
+    style: { numFmt: '#,##0" ₫"' },
+  },
+  {
+    header: 'Final Amount',
+    key: 'finalAmount',
+    width: 15,
+    style: { numFmt: '#,##0" ₫"' },
+  },
+];
+
 
   let totalBeforeDiscountSum = 0;
   let itemDiscountTotalSum = 0;
+  let billDiscountSum = 0;
   let finalAmountSum = 0;
 
   bills.forEach(bill => {
-    const customerNames = bill.items.map(item => item.customerName).join(', ');
+    const note = bill.note || '';
+
+    // Ordered items: "Trà sữa Matcha (x2)", "Nước ép Táo (x1)"
+    const orderedItems = bill.items
+      .map(item => `${item.name} (x${item.quantity})`)
+      .join(', ');
+
     sheet.addRow({
       id: bill.id,
       userId: bill.userId,
       date: bill.date,
       time: bill.time,
-      customerNames,
+      note: bill.note || '',
+      orderedItems,
       totalBeforeDiscount: bill.totalBeforeDiscount,
       itemDiscountTotal: bill.itemDiscountTotal,
+      billDiscountAmount: bill.billDiscountAmount || 0,
       finalAmount: bill.finalAmount,
     });
 
     totalBeforeDiscountSum += bill.totalBeforeDiscount;
     itemDiscountTotalSum += bill.itemDiscountTotal;
+    billDiscountSum += bill.billDiscountAmount || 0;
     finalAmountSum += bill.finalAmount;
   });
 
-  // Thêm một hàng tổng ở cuối bảng
-  sheet.addRow({}); // hàng trống để phân cách
+  // Empty row
+  sheet.addRow({});
 
-  sheet.addRow({
+  // Total row
+  const totalRow = sheet.addRow({
     id: 'TỔNG',
     totalBeforeDiscount: totalBeforeDiscountSum,
     itemDiscountTotal: itemDiscountTotalSum,
+    billDiscountAmount: billDiscountSum,
     finalAmount: finalAmountSum,
   });
 
-  // Optional: format hàng tổng (in đậm)
   const lastRow = sheet.lastRow;
-  if (lastRow) {
+    if (lastRow) {
     lastRow.font = { bold: true };
+    lastRow.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'FFFF99' },
+    };
   }
+
+  totalRow.font = { bold: true };
 
   const buffer = await workbook.xlsx.writeBuffer();
 

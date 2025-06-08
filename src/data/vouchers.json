@@ -2,12 +2,12 @@
   {
     "id": "dashi01",
     "name": "Dashi",
-    "discountPercent": "10"
+    "discountPercent": 10
   },
   {
     "id": "dashi02",
     "name": "Dashi-20%",
-    "discountPercent": "20"
+    "discountPercent": 20
   },
   {
     "id": "child2025",

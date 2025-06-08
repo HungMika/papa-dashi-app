@@ -12,19 +12,24 @@ export interface OrderItem {
 }
 
 interface OrderContextProps {
-  customerName: string;
-  setCustomerName: (name: string) => void;
+  note: string;
+  setNote: (note: string) => void;
   orderItems: OrderItem[];
   addItem: (item: OrderItem) => void;
   removeItem: (productId: string, size: string) => void;
   updateVoucher: (productId: string, size: string, voucher: Voucher | undefined) => void;
+  removeAll: () => void;
 }
 
 const OrderContext = createContext<OrderContextProps | undefined>(undefined);
 
 export function OrderProvider({ children }: { children: ReactNode }) {
-  const [customerName, setCustomerName] = useState('');
+  const [note, setNote] = useState('');
   const [orderItems, setOrderItems] = useState<OrderItem[]>([]);
+
+  const removeAll = () => {
+    setOrderItems([]);
+  };
 
   const addItem = (item: OrderItem) => {
     setOrderItems((prev) => {
@@ -51,7 +56,7 @@ export function OrderProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <OrderContext.Provider value={{ customerName, setCustomerName, orderItems, addItem, removeItem, updateVoucher }}>
+    <OrderContext.Provider value={{ note, setNote, orderItems, addItem, removeItem, updateVoucher, removeAll }}>
       {children}
     </OrderContext.Provider>
   );

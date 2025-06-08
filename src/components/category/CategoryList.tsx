@@ -5,6 +5,7 @@ import { categoryService } from '@/services/category';
 import { Category } from '@/data/types';
 import CategoryItem from '@/components/category/CategoryItem';
 import toast from 'react-hot-toast';
+import LoaderSpinner from '../Loader';
 
 export default function CategoryList() {
   const queryClient = useQueryClient();
@@ -22,7 +23,7 @@ export default function CategoryList() {
     },
   });
 
-  if (isLoading) return <div>Đang tải...</div>;
+  if (isLoading) return <LoaderSpinner />;
 
   return (
     <div className="space-y-2 max-h-[450px] overflow-hidden">

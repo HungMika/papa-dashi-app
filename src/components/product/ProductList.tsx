@@ -5,6 +5,7 @@ import { getProducts, deleteProduct } from '@/services/products';
 import { Product } from '@/data/types';
 import ProductItem from './ProductItem';
 import toast from 'react-hot-toast';
+import LoaderSpinner from '../Loader';
 
 export default function ProductList() {
   const queryClient = useQueryClient();
@@ -22,8 +23,7 @@ export default function ProductList() {
     },
   });
 
-  if (isLoading) return <div>Đang tải danh sách món...</div>;
-
+  if (isLoading) return <LoaderSpinner />;
   return (
     <div className="space-y-2">
       {products.map((product) => (

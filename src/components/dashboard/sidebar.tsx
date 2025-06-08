@@ -6,9 +6,9 @@ import toast from 'react-hot-toast';
 import { logOut } from '@/services/auth';
 
 const navItems = [
-  { title: 'Dashboard', href: '/dashboard', icon: Home },
-  { title: 'Quản lý hàng hoá', href: '/dashboard/management-product', icon: Store },
-  { title: 'Lịch sử bill', href: '/dashboard/history', icon: History },
+  { title: 'Trang chủ', href: '/dashboard', icon: Home },
+  { title: 'Quản lý hàng hoá', href: '/dashboard/product-management', icon: Store },
+  { title: 'Lịch sử bill', href: '/dashboard/bill-management', icon: History },
 ];
 
 export function Sidebar() {
