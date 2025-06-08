@@ -42,7 +42,7 @@ export const SignInCard = ({ setstate }: SignInCardProps) => {
     //TODO: call signIn api here
     try {
       const user = await logIn(username, password);
-      toast.success('Logged in successfully.');
+      toast.success('Đăng nhập thành công.');
       setUser(user);
       router.push('/dashboard');
     } catch (err: any) {
