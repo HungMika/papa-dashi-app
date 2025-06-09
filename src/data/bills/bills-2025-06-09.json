@@ -1,0 +1,23 @@
+[
+  {
+    "id": "84884e16-18b4-4b09-a6d1-ff4c53d2cf6c",
+    "userId": "u001",
+    "date": "2025-06-09",
+    "time": "10:25:37",
+    "note": "không đường",
+    "items": [
+      {
+        "productId": "prod004",
+        "name": "Nước Ép Táo",
+        "quantity": 1,
+        "price": 20000,
+        "total": 20000,
+        "paymentMethod": "cash"
+      }
+    ],
+    "totalBeforeDiscount": 20000,
+    "itemDiscountTotal": 0,
+    "billDiscountAmount": 0,
+    "finalAmount": 20000
+  }
+]

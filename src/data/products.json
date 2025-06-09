@@ -217,6 +217,11 @@
         "size": "L",
         "price": 30000,
         "quantity": 10
+      },
+      {
+        "size": "CS",
+        "price": 35000,
+        "quantity": 10
       }
     ]
   },

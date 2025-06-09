@@ -1,11 +1,15 @@
+// src/services/vounchers.ts
 import axios from 'axios';
 import { Voucher } from '@/data/types';
 
 const baseUrl = '/api/voucher';
 
 export const voucherService = {
-  async getAll(): Promise<Voucher[]> {
-    const res = await axios.get(baseUrl);
+  async getAll(name?: string): Promise<Voucher[]> {
+    const params: Record<string, string> = {};
+    if (name) params.name = name;
+
+    const res = await axios.get(baseUrl, { params });
     return res.data;
   },
 

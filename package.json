@@ -8,7 +8,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "electron": "electron ."
+    "electron": "electron .",
+    "start:both": "concurrently -k \"npm run dev\" \"npm run electron\""
+
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.14",
@@ -40,6 +42,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "concurrently": "^9.1.2",
     "electron": "^36.3.2",
     "eslint": "^9",
     "eslint-config-next": "15.3.2",

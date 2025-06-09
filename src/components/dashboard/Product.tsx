@@ -113,16 +113,16 @@ export default function ProductCard({ product }: ProductCardProps) {
           </div>
 
           {/* Giá và nút hành động */}
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col md:flex-row md:justify-between gap-2 items-start md:items-center">
             <div className="text-sm font-semibold">{price.toLocaleString()} VND</div>
 
-            <div className="flex items-center gap-1">
-              <Button size="sm" className="cursor-pointer" onClick={handleOrder} disabled={isSoldOut}>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-1">
+              <Button size="sm" className="cursor-pointer w-full sm:w-auto" onClick={handleOrder} disabled={isSoldOut}>
                 Order
               </Button>
               <Button
                 size="sm"
-                className={`p-1 ${isSoldOut ? 'bg-red-600' : 'bg-blue-600'} text-white cursor-pointer`}
+                className={`p-1 w-full sm:w-auto ${isSoldOut ? 'bg-red-600' : 'bg-blue-600'} text-white cursor-pointer`}
                 onClick={handleToggleSoldOut}
               >
                 <ArchiveX className="w-4 h-4" />

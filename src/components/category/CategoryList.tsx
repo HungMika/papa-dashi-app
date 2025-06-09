@@ -6,13 +6,33 @@ import { Category } from '@/data/types';
 import CategoryItem from '@/components/category/CategoryItem';
 import toast from 'react-hot-toast';
 import LoaderSpinner from '../Loader';
+import { Input } from '../ui/input';
+import useDebounce from '@/hooks/use-debounce';
+import { useState } from 'react';
 
-export default function CategoryList() {
+export function useSearchCategoryState() {
+  const [search, setSearch] = useState('');
+  const debounced = useDebounce(search, 300);
+  return { search, setSearch, debounced };
+}
+
+export function CategorySearchBar({ search, setSearch }: { search: string; setSearch: (v: string) => void }) {
+  return (
+    <Input
+      placeholder="Tìm loại hàng theo tên..."
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+      className="w-full max-w-md"
+    />
+  );
+}
+
+export function CategoryListContent({ search }: { search: string }) {
   const queryClient = useQueryClient();
 
   const { data: categories = [], isLoading } = useQuery<Category[]>({
-    queryKey: ['categories'],
-    queryFn: () => categoryService.getAll(),
+    queryKey: ['categories', search],
+    queryFn: () => categoryService.getAll(search),
   });
 
   const deleteMutation = useMutation({
@@ -24,9 +44,10 @@ export default function CategoryList() {
   });
 
   if (isLoading) return <LoaderSpinner />;
+  if (categories.length === 0) return <p className="text-sm text-gray-500">Không tìm thấy loại hàng nào.</p>;
 
   return (
-    <div className="space-y-2 max-h-[450px] overflow-hidden">
+    <div className="space-y-2">
       {categories.map((category) => (
         <CategoryItem key={category.id} category={category} onDelete={() => deleteMutation.mutate(category.id)} />
       ))}

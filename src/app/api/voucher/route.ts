@@ -1,13 +1,23 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 import { Voucher } from '@/data/types';
 
 const filePath = path.resolve(process.cwd(), 'src/data/vouchers.json');
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+
+  const { searchParams } = new URL(req.url);
+  const name = searchParams.get('name')?.toLowerCase();
+
+
   const vouchers = JSON.parse(fs.readFileSync(filePath, 'utf8')) as Voucher[];
-  return NextResponse.json(vouchers);
+  
+  const filteredVouchers = name
+    ? vouchers.filter(v => v.name.toLowerCase().includes(name))
+    : vouchers;
+  
+  return NextResponse.json(filteredVouchers);
 }
 
 export async function POST(request: Request) {

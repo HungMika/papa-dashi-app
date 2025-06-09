@@ -10,14 +10,17 @@ function createWindow() {
   console.log('App name:', app.getName());
 
   const win = new BrowserWindow({
-    width: 1200,
-    height: 800,
-    webPreferences: {
-      nodeIntegration: false,
-      contextIsolation: true,
-      preload: path.join(__dirname, 'preload.js'),
-    },
-  });
+  show: false, // ẩn trước khi sẵn sàng
+  webPreferences: {
+    nodeIntegration: false,
+    contextIsolation: true,
+    preload: path.join(__dirname, 'preload.js'),
+  },
+});
+
+win.maximize();     // phóng to
+win.show();         // hiển thị sau khi maximize để tránh nháy
+
 
   // Dev
   win.loadURL('http://localhost:3000');
