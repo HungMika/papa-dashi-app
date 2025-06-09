@@ -156,6 +156,7 @@ export default function EditProductDialog({ open, onOpenChange, product, onUpdat
                 <span className="w-6">{size}</span>
                 <Input
                   type="number"
+                  min={0}
                   placeholder="Giá"
                   value={sizes[size].price}
                   disabled={!sizes[size].enabled}
@@ -164,6 +165,7 @@ export default function EditProductDialog({ open, onOpenChange, product, onUpdat
                 />
                 <Input
                   type="number"
+                  min={0}
                   placeholder="SL"
                   value={sizes[size].quantity}
                   disabled={!sizes[size].enabled}

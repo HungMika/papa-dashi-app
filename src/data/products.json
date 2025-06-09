@@ -121,6 +121,11 @@
         "size": "L",
         "price": 30000,
         "quantity": 10
+      },
+      {
+        "size": "CS",
+        "price": 40000,
+        "quantity": 10
       }
     ]
   },
@@ -222,20 +227,6 @@
         "size": "CS",
         "price": 35000,
         "quantity": 10
-      }
-    ]
-  },
-  {
-    "id": "chao-chsc",
-    "name": "cháo cá hồi sốt cà",
-    "unit": "phần",
-    "imagePath": "product-img/cb---ca-hoi-sot-ca.jpg",
-    "categoryId": "chao-01",
-    "sizes": [
-      {
-        "size": "S",
-        "price": 12000,
-        "quantity": 2
       }
     ]
   }

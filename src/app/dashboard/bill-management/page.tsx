@@ -6,6 +6,9 @@ import { fetchBillDates, downloadBillExcel } from '@/services/bills';
 import { Loader2, Sheet } from 'lucide-react'; // 👈 import icon
 import toast from 'react-hot-toast';
 import LoaderSpinner from '@/components/Loader';
+import { getBillsByDate } from '@/services/bills';
+import BillDetailDialog from '@/components/bill/BillDetail';
+import { Bill } from '@/data/types';
 
 export default function BillManagementPage() {
   const {
@@ -18,6 +21,20 @@ export default function BillManagementPage() {
   });
 
   const [loadingDate, setLoadingDate] = useState<string | null>(null); // 👈 track loading file
+  const [selectedDate, setSelectedDate] = useState<string | null>(null);
+  const [bills, setBills] = useState<Bill[]>([]);
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  const openDetailDialog = async (date: string) => {
+    try {
+      const bills = await getBillsByDate(date);
+      setBills(bills);
+      setSelectedDate(date);
+      setDialogOpen(true);
+    } catch (err) {
+      toast.error('Không thể tải chi tiết hoá đơn.');
+    }
+  };
 
   const downloadExcel = async (date: string) => {
     try {
@@ -62,7 +79,9 @@ export default function BillManagementPage() {
         <ul className="space-y-2 max-h-[400px] overflow-y-auto">
           {billDates.map((date) => (
             <li key={date} className="flex justify-between items-center border border-gray-400 p-3 rounded-md shadow">
-              <span>Hoá đơn ngày: {formatDateToDisplay(date)}</span>
+              <span className="hover:underline text-blue-700 cursor-pointer" onClick={() => openDetailDialog(date)}>
+                Hoá đơn ngày: {formatDateToDisplay(date)}
+              </span>
               <button
                 onClick={() => downloadExcel(date)}
                 className="bg-green-600 p-2 rounded-full text-white font-semibold hover:bg-green-700 transition cursor-pointer flex items-center justify-center w-9 h-9"
@@ -75,6 +94,15 @@ export default function BillManagementPage() {
           ))}
         </ul>
       </div>
+
+      {selectedDate && (
+        <BillDetailDialog
+          open={dialogOpen}
+          onOpenChange={setDialogOpen}
+          date={formatDateToDisplay(selectedDate)}
+          bills={bills}
+        />
+      )}
     </div>
   );
 }

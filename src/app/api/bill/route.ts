@@ -59,3 +59,22 @@ const appliedBillVoucher: Voucher | undefined = reqBody.voucherApplied;
 
   return NextResponse.json({ message: 'Bill saved', billId: billToSave.id });
 }
+
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const date = searchParams.get('date');
+
+  if (!date) {
+    return NextResponse.json({ message: 'Missing date parameter' }, { status: 400 });
+  }
+
+  const filePath = path.resolve(process.cwd(), 'src/data/bills', `bills-${date}.json`);
+
+  if (!fs.existsSync(filePath)) {
+    return NextResponse.json([]); // Trả về mảng rỗng nếu không có bill ngày đó
+  }
+
+  const bills = JSON.parse(fs.readFileSync(filePath, 'utf8')) as Bill[];
+
+  return NextResponse.json(bills);
+}

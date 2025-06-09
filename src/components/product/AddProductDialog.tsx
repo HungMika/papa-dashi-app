@@ -160,6 +160,7 @@ export default function AddProductDialog() {
                 <span className="w-6">{size}</span>
                 <Input
                   type="number"
+                  min={0}
                   placeholder="Giá"
                   value={sizes[size].price}
                   disabled={!sizes[size].enabled || mutation.isPending}
@@ -168,6 +169,7 @@ export default function AddProductDialog() {
                 />
                 <Input
                   type="number"
+                  min={0}
                   placeholder="SL"
                   value={sizes[size].quantity}
                   disabled={!sizes[size].enabled || mutation.isPending}
