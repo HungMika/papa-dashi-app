@@ -18,6 +18,7 @@ export default function BillManagementPage() {
   } = useQuery<string[], Error>({
     queryKey: ['billDates'],
     queryFn: fetchBillDates,
+    select: (dates) => dates.sort((a, b) => b.localeCompare(a)),
   });
 
   const [loadingDate, setLoadingDate] = useState<string | null>(null); // 👈 track loading file
