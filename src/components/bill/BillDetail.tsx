@@ -50,7 +50,13 @@ export default function BillDetail({ open, onOpenChange, date, bills }: Props) {
                       <TableCell className="text-center">{item.quantity}</TableCell>
                       <TableCell className="text-right">{item.price.toLocaleString()}đ</TableCell>
                       <TableCell className="text-right">{item.total.toLocaleString()}đ</TableCell>
-                      <TableCell className="text-right capitalize">{item.paymentMethod}</TableCell>
+                      <TableCell className="text-right">
+                        {item.paymentMethod === 'cash'
+                          ? 'Tiền mặt'
+                          : item.paymentMethod === 'bank'
+                          ? 'Chuyển khoản'
+                          : item.paymentMethod}
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
