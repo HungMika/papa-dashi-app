@@ -1,32 +1,49 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
-const ElectronStore = require('electron-store').default;  // Sửa chỗ này
-const store = new ElectronStore();
+const ElectronStore = require('electron-store').default;
+const axios = require('axios');
 
+const store = new ElectronStore();
 console.log('Electron Store path:', store.path);
 
+async function waitForServer(url, retries = 40, interval = 500) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      await axios.get(url);
+      return true;
+    } catch (err) {
+      console.log(`[Electron] Waiting for server... (${i + 1}/${retries})`);
+      await new Promise((res) => setTimeout(res, interval));
+    }
+  }
+  return false;
+}
 
-function createWindow() {
+async function createWindow() {
   console.log('App name:', app.getName());
 
   const win = new BrowserWindow({
-  show: false, // ẩn trước khi sẵn sàng
-  webPreferences: {
-    nodeIntegration: false,
-    contextIsolation: true,
-    preload: path.join(__dirname, 'preload.js'),
-  },
-});
+    show: false, // ẩn trước khi sẵn sàng
+    webPreferences: {
+      nodeIntegration: false,
+      contextIsolation: true,
+      preload: path.join(__dirname, 'preload.js'),
+    },
+  });
 
-win.maximize();     // phóng to
-win.show();         // hiển thị sau khi maximize để tránh nháy
+  win.maximize();
 
+  const devUrl = 'http://localhost:3000';
 
-  // Dev
-  win.loadURL('http://localhost:3000');
+  const ready = await waitForServer(devUrl);
 
-  // Production
-  // win.loadFile('out/index.html');
+  if (ready) {
+    win.loadURL(devUrl);
+  } else {
+    win.loadURL('data:text/html,<h2>⚠️ Failed to start server at localhost:3000</h2>');
+  }
+
+  win.show(); // chỉ show sau khi load xong
 }
 
 app.whenReady().then(() => {
